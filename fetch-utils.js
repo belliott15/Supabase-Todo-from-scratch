@@ -2,7 +2,28 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const SUPABASE_URL = 'https://cpwfuaqvwlzrtpauugot.supabase.co';
 
-const client = supabase.createClient(SUPABASE_URL, process.env.SUPABASE_KEY);
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+export async function getItems(){
+    const response = await client
+        .from('shopping_lists')
+        .select('*');
+
+    return checkError(response.body);
+}
+
+export async function createItems(item){
+    const response = await client
+        .from('shopping_lists')
+        .insert({
+            name: item.item,
+            amount: item.quantity,
+            bought: item.is_bought
+        })
+        .single();
+
+    return checkError(response.body);
+}
 
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
@@ -38,6 +59,6 @@ export async function logout() {
     return (window.location.href = '../');
 }
 
-// function checkError({ data, error }) {
-//     return error ? console.error(error) : data;
-// }
+function checkError({ data, error }) {
+    return error ? console.error(error) : data;
+}

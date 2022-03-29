@@ -30,9 +30,16 @@ main {
     margin-bottom: calc(var(--footer-height));
 }
 
+#shopping-list-main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px;
+    height: 90%;
+    width: 100%;
+}
+
 section {
     background-color: var(--color5);
-    width: 1000px;
     max-width: 80%;
     display: flex;
     flex-direction: column;
@@ -42,15 +49,15 @@ section {
     padding-bottom: var(--gutter);
     margin-top: var(--gutter);
     margin-bottom: var(--gutter);
-    border: solid 2px var(--color1);
+    border: solid 2px black;
 }
 
 header {
     display: flex;
     justify-content: flex-end;
-    background-color: var(--color3);
+    background-color: #00a36c;
     height: var(--header-height);
-    box-shadow: var(--shadow);
+    box-shadow: #16bed1;
 }
 
 h2 {
@@ -81,7 +88,7 @@ footer {
     height: var(--footer-height);
     display: flex;
     justify-content: flex-end;
-    background-color: var(--color3);
+    background-color: #fb8c23;
     box-shadow: var(--shadow);
 }
 
@@ -107,7 +114,7 @@ footer {
 
 #logout {
     position: fixed;
-    right: 20px;
+    left: 20px;
     top: 90px;
 }
 
@@ -128,4 +135,22 @@ footer {
 
 .auth-container button {
     margin: 10px;
+}
+
+#image-div > img{
+    height: 200px;
+    border-radius: 100%;
+    margin: 20px;
+    border: 4px black inset;
+}
+
+#item-list-display div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0;
+    border: 1px black solid;
+    width: 100%;
 }

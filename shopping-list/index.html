@@ -20,8 +20,26 @@
         </div>
     </header>    
     <button id="logout">Logout</button>
-    <main>
-        <h1>You are logged in!</h1>
+    <main id="shopping-list-main">
+        <section id="left-side">
+            <div id="image-div">
+                <img src="/assets/Top image.png">
+            </div>
+            <form>
+                <input name="item-name" placeholder="add item here" />
+                <input name="item-quantity" placeholder="#" />
+                <button id="submit">Submit</button>
+            </form>
+        </section>
+        <section id="right-side">
+            <div id="item-list-display">
+                <div>
+                    <p>item #</p>
+                    <p>description</p>
+                    <button>delete</button>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>

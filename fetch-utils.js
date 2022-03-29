@@ -34,6 +34,15 @@ export async function itemBought(id){
     return response;
 }
 
+export async function itemUnbought(id){
+    const response = await client
+        .from('shopping_lists')
+        .update({ is_bought: false })
+        .match({ id });
+
+    return response;
+}
+
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
 }

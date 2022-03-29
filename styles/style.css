@@ -19,7 +19,7 @@ body {
     --footer-height: 25px;
     
     font-family: 'Titillium Web', sans-serif;
-    background-color: var(--color2);
+    background-color: white;
 }
 
 main {
@@ -29,13 +29,17 @@ main {
     align-items: center;
     margin-bottom: calc(var(--footer-height));
     flex-wrap: wrap;
+    background: linear-gradient(-80deg, #8ccf78 40%, rgba(0, 0, 0, 0) 30%), url(/assets/background.jpg);
+    background-position: left;
+    height: 100%;
+    width: 100%;
 }
 
 #shopping-list-main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 20px;
     height: 90%;
+    background: white;
 }
 
 section {
@@ -121,14 +125,19 @@ footer {
     border-radius: .125em;
 }
 
+#left-side{
+    margin-left: 50px;
+    margin-top: 0 auto;
+}
+
 .auth-main {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .auth-container {
-    margin: 10px;
+    margin-right: 50px;
 }
 
 .auth-container form {

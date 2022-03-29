@@ -3,7 +3,8 @@ import { checkAuth,
     createItems,
     logout, 
     deleteItem,
-    itemBought} from '../fetch-utils.js';
+    itemBought,
+    itemUnbought } from '../fetch-utils.js';
 import { renderItems } from '../render-utils.js';
 
 //set the dom
@@ -50,6 +51,14 @@ async function fetchAndDisplayItems(){
                 await fetchAndDisplayItems();
             });
         }
+        if (items.is_bought){
+            listItems.addEventListener('click', async () => {
+                await itemUnbought(items.id);
+                listItems.classList.remove('bought');
+                await fetchAndDisplayItems();
+            }); 
+        }
+
         displayListEl.append(listItems, deleteButton);
     }
 }

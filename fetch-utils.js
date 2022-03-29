@@ -9,20 +9,20 @@ export async function getItems(){
         .from('shopping_lists')
         .select('*');
 
-    return checkError(response.body);
+    return response.body;
 }
 
 export async function createItems(item){
     const response = await client
         .from('shopping_lists')
         .insert({
-            name: item.item,
-            amount: item.quantity,
+            item: item.item,
+            quantity: item.quantity,
             bought: item.is_bought
         })
         .single();
 
-    return checkError(response.body);
+    return response.body;
 }
 
 export function getUser() {
@@ -59,6 +59,15 @@ export async function logout() {
     return (window.location.href = '../');
 }
 
-function checkError({ data, error }) {
-    return error ? console.error(error) : data;
+export async function deleteItem(id){
+    const response = await client   
+        .from('shopping_lists')
+        .delete()
+        .match({ id });
+
+    return response.user;
 }
+
+// function checkError({ data, error }) {
+//     return error ? console.error(error) : data;
+// }

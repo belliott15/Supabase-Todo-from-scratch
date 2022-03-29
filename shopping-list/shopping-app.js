@@ -35,6 +35,13 @@ async function fetchAndDisplayItems(){
 
     for (let items of itemList){
         const listItems = renderItems(items);
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('deleteButton');
+        deleteButton.textContent = 'X';
+        deleteButton.addEventListener('click', async () => {
+            deleteItem(items.id);
+            fetchAndDisplayItems();
+        });
         if (items.is_bought){
             listItems.classList.add('bought');
         } else {
@@ -43,7 +50,7 @@ async function fetchAndDisplayItems(){
                 await fetchAndDisplayItems();
             });
         }
-        displayListEl.append(listItems);
+        displayListEl.append(listItems, deleteButton);
     }
 }
 

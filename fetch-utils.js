@@ -72,7 +72,7 @@ export async function deleteItem(id){
     const response = await client   
         .from('shopping_lists')
         .delete()
-        .match({ user_id: client.auth.user().id });
+        .match({ id });
 
     return response;
 }

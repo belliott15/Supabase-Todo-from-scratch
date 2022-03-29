@@ -28,6 +28,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-bottom: calc(var(--footer-height));
+    flex-wrap: wrap;
 }
 
 #shopping-list-main{
@@ -35,7 +36,6 @@ main {
     grid-template-columns: 1fr 1fr;
     margin: 20px;
     height: 90%;
-    width: 100%;
 }
 
 section {
@@ -43,11 +43,9 @@ section {
     max-width: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding-top: var(--gutter);
-    padding-bottom: var(--gutter);
-    margin: 20px;
+    padding: 30px;
+    margin: 0;
     border: solid 2px black;
 }
 
@@ -113,8 +111,14 @@ footer {
 
 #logout {
     position: fixed;
-    left: 20px;
+    right: 20px;
     top: 90px;
+    height: 40px;
+    width: 80px;
+    background-color: #00a36c;
+    font-size: 20px;
+    border: none;
+    border-radius: .125em;
 }
 
 .auth-main {
@@ -155,11 +159,33 @@ footer {
 }
 
 .deleteButton {
-    height: 20px;
-    width: 40px;
+    height: 25px;
+    width: 25px;
+    border: black 2px solid;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.deleteButton:hover{
+    cursor:pointer;
+}
+
+.list-items{
+    height: 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.list-items:hover{
+    cursor: pointer;
+    background-color: #16bed1;
 }
 
 .bought{
     text-decoration: line-through;
-    background-color: red;
+    background-color: #16bed1;
+    width: 80%;
+    margin: 10px;
 }

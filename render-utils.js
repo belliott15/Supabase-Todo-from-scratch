@@ -9,10 +9,11 @@ export function renderItems(item){
     const itemQuantity = document.createElement('p');
     const itemDescription = document.createElement('p');
 
-    itemQuantity.textContent = item.quantity;
+    itemQuantity.textContent = `qty: ${item.quantity}`;
     itemDescription.textContent = item.item;
 
     itemDiv.append(itemQuantity, itemDescription);
+    itemDiv.classList.add('list-items');
 
     return itemDiv;
 }

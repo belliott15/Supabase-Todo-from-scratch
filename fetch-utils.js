@@ -18,11 +18,20 @@ export async function createItems(item){
         .insert({
             item: item.item,
             quantity: item.quantity,
-            bought: item.is_bought
+            is_bought: false
         })
         .single();
 
     return response.body;
+}
+
+export async function itemBought(id){
+    const response = await client
+        .from('shopping_lists')
+        .update({ is_bought: true })
+        .match({ id });
+
+    return response;
 }
 
 export function getUser() {
@@ -63,9 +72,9 @@ export async function deleteItem(id){
     const response = await client   
         .from('shopping_lists')
         .delete()
-        .match({ id });
+        .match({ user_id: client.auth.user().id });
 
-    return response.user;
+    return response;
 }
 
 // function checkError({ data, error }) {

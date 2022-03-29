@@ -1,7 +1,9 @@
 import { checkAuth,
     getItems, 
     createItems,
-    logout } from '../fetch-utils.js';
+    logout, 
+    deleteItem,
+    itemBought} from '../fetch-utils.js';
 import { renderItems } from '../render-utils.js';
 
 //set the dom
@@ -19,7 +21,7 @@ formEl.addEventListener('submit', async (e) => {
     await createItems({
         item: data.get('item-name'),
         quantity: data.get('item-quantity'),
-        bought: false 
+        is_bought: false 
     });
 
     fetchAndDisplayItems();
@@ -33,12 +35,31 @@ async function fetchAndDisplayItems(){
 
     for (let items of itemList){
         const listItems = renderItems(items);
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('deleteButton');
-        displayListEl.append(listItems, deleteButton);
+        if (items.is_bought){
+            listItems.classList.add('bought');
+        } else {
+            listItems.addEventListener('click', async () => {
+                await itemBought(items.id);
+                await fetchAndDisplayItems();
+            });
+        }
+        displayListEl.append(listItems);
     }
 }
 
 logoutButton.addEventListener('click', () => {
     logout();
 });
+
+window.addEventListener('load', async () =>{
+    fetchAndDisplayItems();
+});
+
+
+// const deleteButton = document.createElement('button');
+//         deleteButton.classList.add('deleteButton');
+//         deleteButton.textContent = 'Delete';
+//         deleteButton.addEventListener('click', async () => {
+//             deleteItem(items);
+//             fetchAndDisplayItems();
+//         });

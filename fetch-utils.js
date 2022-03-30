@@ -1,7 +1,48 @@
-const SUPABASE_URL = '';
-const SUPABASE_KEY = '';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwd2Z1YXF2d2x6cnRwYXV1Z290Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDc5Njg3MTAsImV4cCI6MTk2MzU0NDcxMH0.sUI1TaJk5GE34Q06B2tduC38-RG8NO-HoqJhGa4wrhg';
+
+const SUPABASE_URL = 'https://cpwfuaqvwlzrtpauugot.supabase.co';
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+export async function getItems(){
+    const response = await client
+        .from('shopping_lists')
+        .select('*')
+        .order('id', { ascending: true });
+
+    return response.body;
+}
+
+export async function createItems(item){
+    const response = await client
+        .from('shopping_lists')
+        .insert({
+            item: item.item,
+            quantity: item.quantity,
+            is_bought: false
+        })
+        .single();
+
+    return response.body;
+}
+
+export async function itemBought(id){
+    const response = await client
+        .from('shopping_lists')
+        .update({ is_bought: true })
+        .match({ id });
+
+    return response;
+}
+
+export async function itemUnbought(id){
+    const response = await client
+        .from('shopping_lists')
+        .update({ is_bought: false })
+        .match({ id });
+
+    return response;
+}
 
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
@@ -15,7 +56,7 @@ export function checkAuth() {
 
 export function redirectIfLoggedIn() {
     if (getUser()) {
-        location.replace('./other-page');
+        location.replace('./shopping-list');
     }
 }
 
@@ -35,6 +76,24 @@ export async function logout() {
     await client.auth.signOut();
 
     return (window.location.href = '../');
+}
+
+export async function deleteItem(id){
+    const response = await client   
+        .from('shopping_lists')
+        .delete()
+        .match({ id });
+
+    return response;
+}
+
+export async function deleteList(){
+    const response = await client   
+        .from('shopping_lists')
+        .delete()
+        .match({ user_id: client.auth.user().id });
+
+    return response;
 }
 
 // function checkError({ data, error }) {

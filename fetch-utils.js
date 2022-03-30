@@ -7,7 +7,8 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 export async function getItems(){
     const response = await client
         .from('shopping_lists')
-        .select('*');
+        .select('*')
+        .order('id', { ascending: true });
 
     return response.body;
 }
@@ -82,6 +83,15 @@ export async function deleteItem(id){
         .from('shopping_lists')
         .delete()
         .match({ id });
+
+    return response;
+}
+
+export async function deleteList(){
+    const response = await client   
+        .from('shopping_lists')
+        .delete()
+        .match({ user_id: client.auth.user().id });
 
     return response;
 }

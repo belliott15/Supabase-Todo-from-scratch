@@ -27,8 +27,10 @@
                 <img src="/assets/Top image.png">
             </div>
             <form>
-                <input required name="item-name" placeholder="add item here" />
-                <input required name="item-quantity" placeholder="#" />
+                <p>Item Name:</p>
+                <input required name="item-name" placeholder="add item here" id="item-input"/>
+                <p>Qty:</p>
+                <input required name="item-quantity" placeholder="#" id="quantity" />
                 <button id="submit">Submit</button>
             </form>
         </section>
@@ -36,6 +38,7 @@
             <h2>Your Item List</h2>
             <div id="item-list-display">
             </div>
+            <button id="delete-list">Delete List</button>
         </section>
     </main>
     <footer>

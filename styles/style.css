@@ -44,6 +44,20 @@ main {
     margin-top: 30px;
 }
 
+@media (max-width: 600px){
+    #shopping-list-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    section{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}
+
 section {
     background-color:#8ccf78;
     max-width: 80%;
@@ -114,16 +128,6 @@ footer {
     }
 
 }
-
-@keyframes loading {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(90deg);
-    }
-}
-
 
 #logout {
     position: fixed;
@@ -291,3 +295,4 @@ form p{
     border-radius: 5px;
     font-size: 23px;
 }
+
